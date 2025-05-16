@@ -1,10 +1,18 @@
 package com.example.Usuarios.model;
 
+import java.util.Date;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "usuarios")
@@ -15,29 +23,37 @@ import lombok.Data;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @column(name = "id")
+    @Column(name = "id")
     private Long id_user;
 
-    @Column(lenght = 20,name = "nombre")
+    @Column(length = 20,name = "nombre")
     private String nombre;
 
-    @Column(lenght 20,name = "apellido")
+    @Column(length = 20,name = "apellido")
     private String apellido;
 
-    @Column(date ,name = "fecha_nacimiento")
+    @Column(name = "fecha_nacimiento")
     private Date fecha_nacimiento;
 
-    @Column(lenght = 50,name = "email")
+    @Column(length = 50,name = "email")
     private String email;
 
-    @Column(int = 10,name = "telefono")
+    @Column(name = "telefono")
     private int telefono;
 
-    @Column(lenght = 50,name = "direccion")
+    @Column(length = 50,name = "direccion")
     private String direccion;
 
-    @column(name = clave)
-    private String clave;}
+    @Column(name = "clave")
+    private String clave;
 
-
+    @ManyToOne
+    @JoinColumn(name = "id_rol", nullable = false)
+    private Rol rol;
+   
+    @ManyToOne
+    @JoinColumn(name = "id_estado", nullable = false)
+    private Estado estado;
+    
+    
 }
