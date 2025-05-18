@@ -7,8 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Usuarios.model.Usuario;
+import com.example.Usuarios.model.Usuarios;
 import com.example.Usuarios.repository.UsuarioRepository;
+
 
 @Service
 @Transactional
@@ -16,25 +17,27 @@ import com.example.Usuarios.repository.UsuarioRepository;
 public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @autowired
+    private RolService rolService;
     
     //metodo para buscar todos los usuarios
-    public List<Usuario> ListaUsuario() {
+    public List<Usuarios> ListaUsuario() {
         return usuarioRepository.findAll();
     }
 
     //metodo para buscar un usuario por id
-    public Usuario BuscarUsuarioId(Long id) {
-        return usuarioRepository.findById(id).get();
+    public Usuarios BuscarUsuarioId(Long id) {
+        return usuarioRepository.findById(id).orElse(())->new RuntimeException("Usuario no encontrado");
     }
 
     //metodo para crear un usuario
-    public void CrearUsuario(Usuario usuario) {
+    public void CrearUsuario(Usuarios usuario) {
+        usuario.setClave(EncriptarClave(usuario.getClave()));
         usuarioRepository.save(usuario);
-        
     }
 
-    //metodo para actualizar un usuario 
-    public void ActualizarUsuario(Usuario usuario) {
+    //metodo para actualizar un usuario
+    public void ActualizarUsuario(Usuarios usuario) {
         usuarioRepository.save(usuario);
     }
 
@@ -54,15 +57,6 @@ public class UsuarioService {
 
     //metodo para obtener una direccion de un usuario
     
-
-
-    //metodo para actualizar la direccion de un usuario 
-    public void ActualizarDireccionUsuario(Long id, String direccion) {
-        Usuario usuario = BuscarUsuarioId(id);
-        usuario.setDireccion(direccion);
-        ActualizarUsuario(usuario);
-    }
-
     //metodo para obtener ticket de un usuario
 
     //metodo obtener los contactos de un usuario

@@ -1,6 +1,6 @@
 package com.example.Usuarios.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,10 +20,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Usuario {
+public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "iduser")
     private Long id_user;
 
     @Column(length = 20,name = "nombre")
@@ -41,19 +41,12 @@ public class Usuario {
     @Column(name = "telefono")
     private int telefono;
 
-    @Column(length = 50,name = "direccion")
-    private String direccion;
-
     @Column(name = "clave")
     private String clave;
 
     @ManyToOne
     @JoinColumn(name = "id_rol", nullable = false)
     private Rol rol;
-   
-    @ManyToOne
-    @JoinColumn(name = "id_estado", nullable = false)
-    private Estado estado;
     
     
 }
