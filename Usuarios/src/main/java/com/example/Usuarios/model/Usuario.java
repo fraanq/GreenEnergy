@@ -1,7 +1,5 @@
 package com.example.Usuarios.model;
 
-import java.sql.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,14 +24,14 @@ public class Usuario {
     @Column(name = "iduser")
     private Long id_user;
 
+    @Column(length = 9, name = "rut")
+    private String rut;   
+
     @Column(length = 20,name = "nombre")
     private String nombre;
 
     @Column(length = 20,name = "apellido")
     private String apellido;
-
-    @Column(name = "fecha_nacimiento")
-    private Date fecha_nacimiento;
 
     @Column(length = 50,name = "email")
     private String email;
@@ -48,5 +46,6 @@ public class Usuario {
     @JoinColumn(name = "id_rol", nullable = false)
     private Rol rol;
     
+    private long direccionId;
     
 }

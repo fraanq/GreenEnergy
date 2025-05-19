@@ -19,6 +19,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private RolService rolService;
+
     
     //metodo para buscar todos los usuarios
     public List<Usuario> obtenerUsuarios() {
@@ -31,21 +32,21 @@ public class UsuarioService {
     }
 
     //metodo para crear un usuario
-    public void CrearUsuario(Usuario NuevoUsuario) {
-        NuevoUsuario.setNombre(NuevoUsuario.getNombre().toUpperCase());
-        NuevoUsuario.setApellido(NuevoUsuario.getApellido().toUpperCase());
-        NuevoUsuario.setFecha_nacimiento(NuevoUsuario.getFecha_nacimiento());
-        NuevoUsuario.setTelefono(NuevoUsuario.getTelefono());
-        NuevoUsuario.setEmail(NuevoUsuario.getEmail().toLowerCase());
-        NuevoUsuario.setClave(EncriptarClave(NuevoUsuario.getClave()));
-        NuevoUsuario.setRol(rolService.BuscarRolId(NuevoUsuario.getRol().getId_rol()));
-        usuarioRepository.save(NuevoUsuario);
+    public Usuario CrearUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
     
 
     //metodo para actualizar un usuario
-    public void ActualizarUsuario(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public Usuario ActualizarUsuario(long id, Usuario usuario) {
+        Usuario usuarioExistente = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        usuarioExistente.setRut(usuario.getRut());
+        usuarioExistente.setNombre(usuario.getNombre());
+        usuarioExistente.setApellido(usuario.getApellido());
+        usuarioExistente.setEmail(usuario.getEmail());
+        usuarioExistente.setTelefono(usuario.getTelefono());
+        usuarioExistente.setRol(rolService.BuscarRolId(usuario.getRol().getId_rol()));
+        return usuarioRepository.save(usuarioExistente);
     }
 
     //metodo para eliminar un usuario
@@ -53,19 +54,5 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    //metodo para encriptar la clave
-    public String EncriptarClave(String clave) {
-        String claveEncriptada = "";
-        for (int i = 0; i < clave.length(); i++) {
-            claveEncriptada += (char) (clave.charAt(i) + 1);
-        }
-        return claveEncriptada;
-    }
-
-    //metodo para obtener una direccion de un usuario
-    
-    //metodo para obtener ticket de un usuario
-
-    //metodo obtener los contactos de un usuario
     
 }

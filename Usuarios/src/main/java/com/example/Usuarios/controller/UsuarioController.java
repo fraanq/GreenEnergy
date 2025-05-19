@@ -20,6 +20,7 @@ import com.example.Usuarios.service.UsuarioService;
 public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
+
     //metodo para buscar todos los usuarios
     @GetMapping("/all")
     public ResponseEntity<List<Usuario>> obtenerUsuarios(){
@@ -41,12 +42,12 @@ public class UsuarioController {
     }
     //metodo para actualizar un usuario
     @PutMapping("/actualizar")
-    public ResponseEntity<Usuario> actualizarUsuario(Usuario usuario){
-        Usuario user = usuarioService.BuscarUsuarioId(usuario.getId_user());
+    public ResponseEntity<Usuario> actualizarUsuario(Long id, Usuario usuario){
+        Usuario user = usuarioService.BuscarUsuarioId(id);
         if(user == null){
             return ResponseEntity.notFound().build();
         }
-        usuarioService.ActualizarUsuario(usuario);
+        usuarioService.ActualizarUsuario(id, usuario);
         return ResponseEntity.ok(usuario);
     }
     //metodo para crear un usuario
