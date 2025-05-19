@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Usuarios.model.Usuarios;
+import com.example.Usuarios.model.Usuario;
 import com.example.Usuarios.repository.UsuarioRepository;
 
 
@@ -17,27 +17,34 @@ import com.example.Usuarios.repository.UsuarioRepository;
 public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @autowired
+    @Autowired
     private RolService rolService;
     
     //metodo para buscar todos los usuarios
-    public List<Usuarios> ListaUsuario() {
+    public List<Usuario> obtenerUsuarios() {
         return usuarioRepository.findAll();
     }
 
     //metodo para buscar un usuario por id
-    public Usuarios BuscarUsuarioId(Long id) {
-        return usuarioRepository.findById(id).orElse(())->new RuntimeException("Usuario no encontrado");
+    public Usuario BuscarUsuarioId(Long id) {
+        return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
     //metodo para crear un usuario
-    public void CrearUsuario(Usuarios usuario) {
-        usuario.setClave(EncriptarClave(usuario.getClave()));
-        usuarioRepository.save(usuario);
+    public void CrearUsuario(Usuario NuevoUsuario) {
+        NuevoUsuario.setNombre(NuevoUsuario.getNombre().toUpperCase());
+        NuevoUsuario.setApellido(NuevoUsuario.getApellido().toUpperCase());
+        NuevoUsuario.setFecha_nacimiento(NuevoUsuario.getFecha_nacimiento());
+        NuevoUsuario.setTelefono(NuevoUsuario.getTelefono());
+        NuevoUsuario.setEmail(NuevoUsuario.getEmail().toLowerCase());
+        NuevoUsuario.setClave(EncriptarClave(NuevoUsuario.getClave()));
+        NuevoUsuario.setRol(rolService.BuscarRolId(NuevoUsuario.getRol().getId_rol()));
+        usuarioRepository.save(NuevoUsuario);
     }
+    
 
     //metodo para actualizar un usuario
-    public void ActualizarUsuario(Usuarios usuario) {
+    public void ActualizarUsuario(Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 

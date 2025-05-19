@@ -6,5 +6,5 @@ import com.example.Usuarios.model.Rol;
 
 @Repository
 public interface RolRepository extends JpaRepository<Rol, Long> {
-
+    
 }
