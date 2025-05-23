@@ -35,16 +35,16 @@ public class UsuarioService {
     public Usuario CrearUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
-    
 
     //metodo para actualizar un usuario
-    public Usuario ActualizarUsuario(long id, Usuario usuario) {
-        Usuario usuarioExistente = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    public Usuario ActualizarUsuario(Usuario usuario) {
+        Usuario usuarioExistente = usuarioRepository.findById(usuario.getId_user()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         usuarioExistente.setRut(usuario.getRut());
         usuarioExistente.setNombre(usuario.getNombre());
         usuarioExistente.setApellido(usuario.getApellido());
         usuarioExistente.setEmail(usuario.getEmail());
         usuarioExistente.setTelefono(usuario.getTelefono());
+        usuarioExistente.setContraseña(usuario.getContraseña());
         usuarioExistente.setRol(rolService.BuscarRolId(usuario.getRol().getId_rol()));
         return usuarioRepository.save(usuarioExistente);
     }
@@ -53,6 +53,6 @@ public class UsuarioService {
     public void EliminarUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }
-
+    
     
 }

@@ -21,31 +21,29 @@ import lombok.NoArgsConstructor;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "iduser")
     private Long id_user;
 
-    @Column(length = 9, name = "rut")
+    @Column(nullable = false,length = 12)
     private String rut;   
 
-    @Column(length = 20,name = "nombre")
+    @Column(nullable = false,length = 20)
     private String nombre;
 
-    @Column(length = 20,name = "apellido")
+    @Column(nullable = false, length = 20)
     private String apellido;
 
-    @Column(length = 50,name = "email")
+    @Column(nullable = false,length = 50)
     private String email;
 
-    @Column(name = "telefono")
+    @Column(nullable = false, length = 9)
     private int telefono;
 
-    @Column(name = "clave")
-    private String clave;
+    @Column(nullable = false, length = 20)
+    private String contraseña;
 
     @ManyToOne
-    @JoinColumn(name = "id_rol", nullable = false)
+    @JoinColumn(nullable = false, name = "id_rol")
     private Rol rol;
     
-    private long direccionId;
     
 }

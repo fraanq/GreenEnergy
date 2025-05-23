@@ -28,14 +28,15 @@ public class RolService {
     }
     
     //metodo para crear un nuevo rol
-    public void CrearRol(Rol rol) {
-        rol.setNombre(rol.getNombre().toUpperCase());
-        rolRepository.save(rol);
+    public Rol CrearRol(Rol rol) {
+        return rolRepository.save(rol);
     }
 
     //metodo para actualizar un rol
-    public void ActualizarRol(Rol rol) {
-        rolRepository.save(rol);
+    public Rol ActualizarRol(Rol rol) {
+        Rol rolExistente = rolRepository.findById(rol.getId_rol()).orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        rolExistente.setNombre(rol.getNombre());
+        return rolRepository.save(rolExistente);
     }
 
     //metodo para eliminar un rol

@@ -20,7 +20,7 @@ public class RolController {
     @Autowired
     private RolService rolService;
     //metodo para buscar todos los roles
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Rol>> ObtenerTodosRol(){
         List<Rol> roles = rolService.ObtenerTodosRol();
         if(roles.isEmpty()){
@@ -38,10 +38,13 @@ public class RolController {
         return ResponseEntity.ok(rol);
     }
     //metodo para crear un nuevo rol
-    @PostMapping("/nuevo")
+    @PostMapping
     public ResponseEntity<Rol> CrearRol(Rol rol){
-        rolService.CrearRol(rol);
-        return ResponseEntity.ok(rol);
+        if(rol.getNombre() == null || rol.getNombre().isEmpty()){
+            return ResponseEntity.().body("El campo 'nombre' no puede ser nulo");
+        }
+        Rol nuevoRol = rolService.CrearRol(rol);
+        return ResponseEntity.ok(nuevoRol);
     }
     //metodo para actualizar un rol
     @PutMapping("/actualizar")
