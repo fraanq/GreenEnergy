@@ -14,7 +14,7 @@ public class UsuarioClient {
     public boolean validarUsuarioExistente(Long usuarioId) {
         return webClientBuilder.build()
             .get()
-            .uri("http://localhost:8081/api/usuarios/{id}", usuarioId)
+            .uri("http://localhost:8081/api/v1/usuarios/{id}", usuarioId)
             .retrieve()
             .toBodilessEntity()
             .block()

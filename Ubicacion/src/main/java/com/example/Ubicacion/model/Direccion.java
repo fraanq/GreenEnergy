@@ -22,18 +22,15 @@ public class Direccion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_direccion;
 
-    @Column(length = 20, name = "calle")
-    private String calle;
-
-    @Column(length = 20, name = "numero")
-    private String numero;
-
-    @Column(length = 20, name = "referencia")
-    private String referencia;
-
+    @Column(length = 20, name = "Nombre")
+    private String nombre;
+    
     @ManyToOne
     @JoinColumn(name = "comuna_id")
     private Comuna comuna;
+
+    @Column(nullable = false)
+    private String id_user;
 }
