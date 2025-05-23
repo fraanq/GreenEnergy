@@ -24,4 +24,9 @@ public class RegionService {
     public Region getRegionById(Long id) {
         return regionRepository.findById(id).orElseThrow(() -> new RuntimeException("Region no encontrada"));
     }
+
+    //metodo para guardar una region
+    public Region guardarRegion(Region region) {
+        return regionRepository.save(region);
+    }
 }

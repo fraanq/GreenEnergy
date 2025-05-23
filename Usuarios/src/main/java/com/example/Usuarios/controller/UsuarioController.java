@@ -34,9 +34,9 @@ public class UsuarioController {
     }
 
     //metodo para buscar un usuario por id
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<Usuario> obtenerUsuarioId(Long id){
-        Usuario user = usuarioService.BuscarUsuarioId(id);
+        Usuario user = usuarioService.buscarUsuarioId(id);
         if(user == null){
             return ResponseEntity.notFound().build();
         }
@@ -45,32 +45,35 @@ public class UsuarioController {
     //metodo para crear un nuevo usuario
    @PostMapping
     public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario) {
+        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
         if (usuario.getRol() == null || usuario.getRol().getId_rol() == null) {
             return ResponseEntity.badRequest().body("El campo 'rol.id' no puede ser nulo");
     
         }
-        return null;
+        return ResponseEntity.ok(nuevoUsuario);
     }
-
+    //metodo para actualizar un usuario
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@RequestBody Usuario usuario) {
-        Usuario usuarioExistente = usuarioService.BuscarUsuarioId(usuario.getId_user());
-        if (usuarioExistente == null) {
+    public ResponseEntity<?> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
+        try {
+
+            Usuario actualizado = usuarioService.actualizarUsuario(usuario);
+            return ResponseEntity.ok(actualizado);
+        } catch (RuntimeException ex) {
             return ResponseEntity.notFound().build();
         }
-        usuarioService.ActualizarUsuario(usuario);
-        return ResponseEntity.ok(usuario);
-    }
+        
+    }   
 
     //metodo para eliminar un usuario
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Usuario> eliminarUsuario(@PathVariable Long id) {
-        Usuario usuario = usuarioService.BuscarUsuarioId(id);
-        if (usuario == null) {
+    public ResponseEntity<?> eliminarUsuario(@PathVariable Long id) {
+        try {
+            usuarioService.eliminarUsuario(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException ex) {
             return ResponseEntity.notFound().build();
         }
-        usuarioService.EliminarUsuario(id);
-        return ResponseEntity.ok(usuario);
     }
     
 

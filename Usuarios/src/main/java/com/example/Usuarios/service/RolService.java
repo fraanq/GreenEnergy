@@ -17,6 +17,10 @@ public class RolService {
     @Autowired
     private RolRepository rolRepository;
 
+    public RolService(RolRepository rolRepository) {
+        this.rolRepository = rolRepository;
+    }
+
     //metodo para buscar todos los roles
     public List<Rol> ObtenerTodosRol() {
         return rolRepository.findAll();
@@ -40,8 +44,9 @@ public class RolService {
     }
 
     //metodo para eliminar un rol
-    public void EliminarRol(Long id) {
-        rolRepository.deleteById(id);
+    public void eliminarRol(Long id) {
+        Rol rol = rolRepository.findById(id).orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+        rolRepository.delete(rol);
     }
 
 }

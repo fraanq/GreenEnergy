@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,4 +25,8 @@ public class Region {
 
     @Column(length = 20, name = "nombre")
     private String nombre;
+
+    @OneToMany
+    @JoinColumn(name = "id_region", nullable = false)
+    private Comuna comuna;
 }

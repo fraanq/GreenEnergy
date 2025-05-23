@@ -1,5 +1,7 @@
 package com.example.Contrataciones.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,16 +21,15 @@ import lombok.NoArgsConstructor;
 public class Contrataciones {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_contratacion")
-    private String id;
+    private String idcontrataciones;
 
-    @Column(name = "Tipo_contratacion")
+    @Column(nullable = false, length = 20)
     private String tipoContratacion;
 
-    @Column(name = "fecha_contratacion")
-    private String fechaContratacion;
+    @Column(nullable = false, length = 20)
+    private LocalDate fechaContratacion;
 
-    @Column(name = "Estado")
+    @Column(nullable = false, length = 20)
     private String estado;
 
     private long usuarioId;

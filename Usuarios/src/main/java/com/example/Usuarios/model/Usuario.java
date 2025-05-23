@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_user;
+    private Long idusuario;
 
     @Column(nullable = false,length = 12)
     private String rut;   
@@ -35,11 +35,11 @@ public class Usuario {
     @Column(nullable = false,length = 50)
     private String email;
 
-    @Column(nullable = false, length = 9)
-    private int telefono;
+    @Column(nullable = false, length = 15)
+    private String telefono;
 
     @Column(nullable = false, length = 20)
-    private String contraseña;
+    private String contrasena;
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "id_rol")
