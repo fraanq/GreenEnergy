@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Contrataciones {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String idcontrataciones;
+    private long Idcontratacion;
 
     @Column(nullable = false, length = 20)
     private String tipoContratacion;

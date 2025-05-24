@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import com.example.Contrataciones.model.Contrataciones;
 import com.example.Contrataciones.repository.ContratacionesRepository;
@@ -17,9 +16,6 @@ import jakarta.transaction.Transactional;
 public class ContratacionesService {
     @Autowired
     private ContratacionesRepository contratacionesRepository;
-
-    @Autowired
-    private WebClient.Builder webClientBuilder;
 
     
     //metodo para obtener todas las contrataciones
@@ -34,19 +30,25 @@ public class ContratacionesService {
 
     //metodo para crear una nueva contratacion
     public Contrataciones crearContratacion(Contrataciones contratacion) {
-        if (contratacionesRepository.obtenercontratacionById(contratacion.getIdcontrataciones()).isPresent()) {
-            throw new RuntimeException("La contratacion ya existe");
-        }
         return contratacionesRepository.save(contratacion);
     }
 
     //metodo para actualizar una contratacion
-    public Contrataciones actualizarContratacion(Contrataciones contratacion) {
-        Contrataciones contratacionExistente = contratacionesRepository.obtenercontratacionById(contratacion.getIdcontrataciones())
-                .orElseThrow(() -> new RuntimeException("Contratacion no encontrada"));
+    public Contrataciones actualizarContratacion(long id,Contrataciones contratacion) {
+    Contrataciones contratacionExistente = contratacionesRepository.findById(contratacion.getIdcontratacion())
+            .orElseThrow(() -> new RuntimeException("Contratación no encontrada"));
         contratacionExistente.setTipoContratacion(contratacion.getTipoContratacion());
         contratacionExistente.setFechaContratacion(contratacion.getFechaContratacion());
         contratacionExistente.setEstado(contratacion.getEstado());
+        contratacionExistente.setUsuarioId(contratacion.getUsuarioId());
+        contratacionExistente.setDireccionId(contratacion.getDireccionId());
+        contratacionExistente.setServicioId(contratacion.getServicioId());
+
         return contratacionesRepository.save(contratacionExistente);
+    }
+    //metodo para eliminar una contratacion
+    public void eliminarContratacion(Long id) {
+        contratacionesRepository.deleteById(id);
+
     }
 }

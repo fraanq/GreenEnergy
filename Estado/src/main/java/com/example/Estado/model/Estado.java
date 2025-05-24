@@ -19,11 +19,11 @@ public class Estado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idestado;
 
-    @Column(length = 20, name = "nombre")
+    @Column(nullable = true,length = 20)
     private String nombre;
 
-    @Column(length = 20, name = "tipo")
+    @Column(nullable = true,length = 20)
     private String tipo;
 }
