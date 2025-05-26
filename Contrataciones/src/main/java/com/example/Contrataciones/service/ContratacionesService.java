@@ -1,4 +1,4 @@
-package com.example.Contrataciones.Service;
+package com.example.Contrataciones.service;
 
 import java.util.List;
 

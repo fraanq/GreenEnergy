@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Contrataciones.Service.ContratacionesService;
+
 import com.example.Contrataciones.model.Contrataciones;
+import com.example.Contrataciones.service.ContratacionesService;
 
 
 
