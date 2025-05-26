@@ -23,17 +23,17 @@ public class Contrataciones {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Idcontratacion;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 50)
     private String tipoContratacion;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 10)
     private LocalDate fechaContratacion;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 50)
     private String estado;
 
-    private long usuarioId;
-    private long direccionId;
-    private long servicioId;
+    private long idusuario;
+    private long iddireccion;
+    private long idservicio;
 
 }

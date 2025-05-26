@@ -43,11 +43,5 @@ public class EstadoService {
         Estado existeEstado = obtenerEstadoById(id);
         estadoRepository.delete(existeEstado);
     }
-    @OneToOne
-    @JoinColumn(name = "id_modulo")
-    private Estado estado;
-
-    @OneToOne
-    @JoinColumn(name = "id_privilegio")
-    private Estado privilegio;
+    
 }

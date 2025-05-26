@@ -40,9 +40,9 @@ public class ContratacionesService {
         contratacionExistente.setTipoContratacion(contratacion.getTipoContratacion());
         contratacionExistente.setFechaContratacion(contratacion.getFechaContratacion());
         contratacionExistente.setEstado(contratacion.getEstado());
-        contratacionExistente.setUsuarioId(contratacion.getUsuarioId());
-        contratacionExistente.setDireccionId(contratacion.getDireccionId());
-        contratacionExistente.setServicioId(contratacion.getServicioId());
+        contratacionExistente.setIdusuario(contratacion.getIdusuario());
+        contratacionExistente.setIddireccion(contratacion.getIddireccion());
+        contratacionExistente.setIdservicio(contratacion.getIdservicio());
 
         return contratacionesRepository.save(contratacionExistente);
     }
