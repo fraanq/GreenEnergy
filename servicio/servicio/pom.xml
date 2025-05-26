@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>servicio</artifactId>
+	<artifactId>Estado</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>servicio</name>
-	<description>gestión de servicio</description>
+	<name>Estado</name>
+	<description>Controla los estados del sistema.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -41,6 +41,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
