@@ -1,13 +1,13 @@
-package com.example.ususario;
+package com.example.Usuario;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UsusarioApplication {
+public class UsuarioApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UsusarioApplication.class, args);
+		SpringApplication.run(UsuarioApplication.class, args);
 	}
 
 }
