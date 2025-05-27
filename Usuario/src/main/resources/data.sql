@@ -1,0 +1,5 @@
+INSERT INTO rol (idrol, nombre) VALUES (1, 'ADMINISTRADOR_SISTEMA');
+INSERT INTO rol (idrol, nombre) VALUES (2, 'COORDINADOR_PROYECTOS');
+INSERT INTO rol (idrol, nombre) VALUES (3, 'TECNICO_INSTALACION');
+INSERT INTO rol (idrol, nombre) VALUES (4, 'SOPORTE_TECNICO');
+INSERT INTO rol (idrol, nombre) VALUES (5, 'CLIENTE');

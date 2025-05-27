@@ -24,7 +24,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     //metodo para buscar todos los usuarios
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Usuario>> obtenerUsuarios(){
         List<Usuario> usuarios = usuarioService.obtenerUsuarios();
         if(usuarios.isEmpty()){
@@ -35,7 +35,7 @@ public class UsuarioController {
 
     //metodo para buscar un usuario por id
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> obtenerUsuarioId(Long id){
+    public ResponseEntity<Usuario> obtenerUsuarioId(@PathVariable Long id){
         Usuario user = usuarioService.buscarUsuarioId(id);
         if(user == null){
             return ResponseEntity.notFound().build();
@@ -45,11 +45,10 @@ public class UsuarioController {
     //metodo para crear un nuevo usuario
    @PostMapping
     public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario) {
-        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
         if (usuario.getRol() == null || usuario.getRol().getIdrol() == null) {
             return ResponseEntity.badRequest().body("El campo 'rol.id' no puede ser nulo");
-    
         }
+        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
         return ResponseEntity.ok(nuevoUsuario);
     }
     //metodo para actualizar un usuario
