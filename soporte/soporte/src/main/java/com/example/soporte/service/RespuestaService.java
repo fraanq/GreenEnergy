@@ -21,23 +21,23 @@ public class RespuestaService {
         return respuestaRepository.findAll();
     }
 
-    public Respuesta obtenerPorId(Long id) {
-        return respuestaRepository.findById(id).orElse(null);
+    public Respuesta obtenerPorId(Long idRespuesta) {
+        return respuestaRepository.findById(idRespuesta).orElse(null);
     }
 
     public List<Respuesta> listarPorTicket(Long ticketId) {
         return respuestaRepository.findByTicketId(ticketId);
     }
 
-    public Respuesta actualizar(Long id, Respuesta respuestaActualizada) {
-        if (respuestaRepository.existsById(id)) {
-            respuestaActualizada.setId(id);
+    public Respuesta actualizar(Long idRespuesta, Respuesta respuestaActualizada) {
+        if (respuestaRepository.existsById(idRespuesta)) {
+            respuestaActualizada.setIdRespuesta(idRespuesta); 
             return respuestaRepository.save(respuestaActualizada);
         }
         return null;
     }
 
-    public void eliminar(Long id) {
-        respuestaRepository.deleteById(id);
+    public void eliminar(Long idRespuesta) {
+        respuestaRepository.deleteById(idRespuesta);
     }
 }

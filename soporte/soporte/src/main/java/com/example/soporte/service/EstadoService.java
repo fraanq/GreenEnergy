@@ -21,19 +21,19 @@ public class EstadoService {
         return estadoRepository.findAll();
     }
 
-    public Estado obtenerPorId(Long id) {
-        return estadoRepository.findById(id).orElse(null);
+    public Estado obtenerPorId(Long idEstado) {
+        return estadoRepository.findById(idEstado).orElse(null);
     }
 
-    public Estado actualizar(Long id, Estado estadoActualizado) {
-        if (estadoRepository.existsById(id)) {
-            estadoActualizado.setId(id);
+    public Estado actualizar(Long idEstado, Estado estadoActualizado) {
+        if (estadoRepository.existsById(idEstado)) {
+            estadoActualizado.setIdEstado(idEstado); // ✅ CORREGIDO
             return estadoRepository.save(estadoActualizado);
         }
         return null;
     }
 
-    public void eliminar(Long id) {
-        estadoRepository.deleteById(id);
+    public void eliminar(Long idEstado) {
+        estadoRepository.deleteById(idEstado);
     }
 }

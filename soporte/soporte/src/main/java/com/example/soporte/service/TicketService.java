@@ -22,19 +22,19 @@ public class TicketService {
         return ticketRepository.findAll();
     }
 
-    public Ticket obtenerTicketPorId(Long id) {
-        return ticketRepository.findById(id).orElse(null);
+    public Ticket obtenerTicketPorId(Long idTicket) {
+        return ticketRepository.findById(idTicket).orElse(null);
     }
 
-    public Ticket actualizarTicket(Long id, Ticket ticketActualizado) {
-        if (ticketRepository.existsById(id)) {
-            ticketActualizado.setId(id);
+    public Ticket actualizarTicket(Long idTicket, Ticket ticketActualizado) {
+        if (ticketRepository.existsById(idTicket)) {
+            ticketActualizado.setIdTicket(idTicket); 
             return ticketRepository.save(ticketActualizado);
         }
         return null;
     }
 
-    public void eliminarTicket(Long id) {
-        ticketRepository.deleteById(id);
+    public void eliminarTicket(Long idTicket) {
+        ticketRepository.deleteById(idTicket);
     }
 }

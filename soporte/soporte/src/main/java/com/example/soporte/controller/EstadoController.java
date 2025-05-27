@@ -25,21 +25,21 @@ public class EstadoController {
         return ResponseEntity.ok(estadoService.listarEstados());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Estado> obtenerPorId(@PathVariable Long id) {
-        Estado estado = estadoService.obtenerPorId(id);
+    @GetMapping("/{idEstado}")
+    public ResponseEntity<Estado> obtenerPorId(@PathVariable Long idEstado) {
+        Estado estado = estadoService.obtenerPorId(idEstado);
         return estado != null ? ResponseEntity.ok(estado) : ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Estado> actualizar(@PathVariable Long id, @RequestBody Estado estado) {
-        Estado actualizado = estadoService.actualizar(id, estado);
+    @PutMapping("/{idEstado}")
+    public ResponseEntity<Estado> actualizar(@PathVariable Long idEstado, @RequestBody Estado estado) {
+        Estado actualizado = estadoService.actualizar(idEstado, estado);
         return actualizado != null ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        estadoService.eliminar(id);
+    @DeleteMapping("/{idEstado}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long idEstado) {
+        estadoService.eliminar(idEstado);
         return ResponseEntity.noContent().build();
     }
 }

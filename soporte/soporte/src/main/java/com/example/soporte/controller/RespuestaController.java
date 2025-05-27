@@ -25,26 +25,26 @@ public class RespuestaController {
         return ResponseEntity.ok(respuestaService.listarRespuestas());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Respuesta> obtener(@PathVariable Long id) {
-        Respuesta respuesta = respuestaService.obtenerPorId(id);
+    @GetMapping("/{idRespuesta}")
+    public ResponseEntity<Respuesta> obtenerPorId(@PathVariable Long idRespuesta) {
+        Respuesta respuesta = respuestaService.obtenerRespuestaPorId(idRespuesta);
         return respuesta != null ? ResponseEntity.ok(respuesta) : ResponseEntity.notFound().build();
     }
 
     @GetMapping("/ticket/{ticketId}")
     public ResponseEntity<List<Respuesta>> listarPorTicket(@PathVariable Long ticketId) {
-        return ResponseEntity.ok(respuestaService.listarPorTicket(ticketId));
+        return ResponseEntity.ok(respuestaService.listarPorTicketId(ticketId));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Respuesta> actualizar(@PathVariable Long id, @RequestBody Respuesta respuesta) {
-        Respuesta actualizada = respuestaService.actualizar(id, respuesta);
+    @PutMapping("/{idRespuesta}")
+    public ResponseEntity<Respuesta> actualizar(@PathVariable Long idRespuesta, @RequestBody Respuesta respuesta) {
+        Respuesta actualizada = respuestaService.actualizarRespuesta(idRespuesta, respuesta);
         return actualizada != null ? ResponseEntity.ok(actualizada) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        respuestaService.eliminar(id);
+    @DeleteMapping("/{idRespuesta}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long idRespuesta) {
+        respuestaService.eliminarRespuesta(idRespuesta);
         return ResponseEntity.noContent().build();
     }
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ServicioRepository extends JpaRepository<Servicio, Long> {
-
     // Buscar servicios por ID de categoria
     List<Servicio> findByCategoriaId(Long categoriaId);
 }
