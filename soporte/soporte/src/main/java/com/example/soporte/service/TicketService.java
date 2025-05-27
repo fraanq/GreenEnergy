@@ -18,7 +18,7 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    public List<Ticket> listarTickets() {
+    public List<Ticket> listarTicketsId() {
         return ticketRepository.findAll();
     }
 

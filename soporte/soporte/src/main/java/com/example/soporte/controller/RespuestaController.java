@@ -33,7 +33,7 @@ public class RespuestaController {
 
     @GetMapping("/ticket/{ticketId}")
     public ResponseEntity<List<Respuesta>> listarPorTicket(@PathVariable Long ticketId) {
-        return ResponseEntity.ok(respuestaService.listarPorTicketId(ticketId));
+        return ResponseEntity.ok(respuestaService.listarTicketsId(ticketId));
     }
 
     @PutMapping("/{idRespuesta}")

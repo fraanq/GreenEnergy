@@ -21,7 +21,7 @@ public class RespuestaService {
         return respuestaRepository.findAll();
     }
 
-    public Respuesta obtenerPorId(Long idRespuesta) {
+    public Respuesta obtenerRespuestaPorId(Long idRespuesta) {
         return respuestaRepository.findById(idRespuesta).orElse(null);
     }
 

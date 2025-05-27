@@ -22,7 +22,7 @@ public class TicketController {
 
     @GetMapping
     public ResponseEntity<List<Ticket>> listar() {
-        return ResponseEntity.ok(ticketService.listarTickets());
+        return ResponseEntity.ok(ticketService.listarTicketsId());
     }
 
     @GetMapping("/{idTicket}")
