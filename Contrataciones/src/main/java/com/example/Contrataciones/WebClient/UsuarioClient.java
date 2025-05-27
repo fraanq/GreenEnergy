@@ -1,8 +1,5 @@
 package com.example.Contrataciones.WebClient;
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -11,22 +8,15 @@ public class UsuarioClient {
 
     private final WebClient webClient;
 
-    //metodo constructor 
-    public UsuarioClient(@Value("${usuario-service.url}") String usuarioServiceUrl) {
-        this.webClient = WebClient.builder().baseUrl(usuarioServiceUrl).build();
+    public UsuarioClient(WebClient.Builder builder) {
+        this.webClient = builder.baseUrl("http://localhost:8081/api/v1/usuarios").build();
     }
 
-   //metodo para realizar la consulta  al microservicio estado y al usuario
-    public Map<String, Object> getUusarioById(Long id){
-        return this.webClient.get()
-        .uri("/{id}", id)
-        .retrieve()
-        .onStatus(status -> status.is4xxClientError(),
-        response -> response.bodyToMono(String.class)
-        .map(body -> new RuntimeException("Usuario no encontrado")))
-        .bodyToMono(Map.class)
-        .doOnNext(body -> System.out.println("Respuesta Usuario: " + body))
-        .block();
-
+    public UsuarioClient obtenerUsuarioPorId(Long id) {
+        return webClient.get()
+            .uri("/{id}", id)
+            .retrieve()
+            .bodyToMono(UsuarioClient.class)
+            .block();
     }
 }

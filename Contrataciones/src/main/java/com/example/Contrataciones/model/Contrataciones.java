@@ -32,11 +32,8 @@ public class Contrataciones {
     @Column(nullable = false, length = 50)
     private String estado;
 
-    @Column(nullable = false)
     private long idusuario;
-    @Column(nullable = false)
     private long iddireccion;
-    @Column(nullable = false)
     private long idservicio;
 
 }
