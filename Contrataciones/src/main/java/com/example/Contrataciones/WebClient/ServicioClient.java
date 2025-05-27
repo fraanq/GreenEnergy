@@ -7,17 +7,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
-public class UsuarioClient {
-
+public class ServicioClient {
     private final WebClient webClient;
 
-    //metodo constructor 
-    public UsuarioClient(@Value("${usuario-service.url}") String usuarioServiceUrl) {
-        this.webClient = WebClient.builder().baseUrl(usuarioServiceUrl).build();
+    public ServicioClient(@Value("${servicio-service.url}") String servicioServiceUrl) {
+        this.webClient = WebClient.builder().baseUrl(servicioServiceUrl).build();
     }
 
-   //metodo para realizar la consulta  al microservicio estado y al usuario
-    public Map<String, Object> getUusarioById(Long id){
+    //metodo para realizar la consulta  al microservicio estado y al usuario
+    public Map<String, Object> getServicioById(Long id){
         return this.webClient.get()
         .uri("/{id}", id)
         .retrieve()
@@ -29,4 +27,6 @@ public class UsuarioClient {
         .block();
 
     }
+
+
 }
