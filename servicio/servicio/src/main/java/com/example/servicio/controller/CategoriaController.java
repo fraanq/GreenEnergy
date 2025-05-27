@@ -26,21 +26,21 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.listarCategorias());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Categoria> obtenerPorId(@PathVariable Long id) {
-        Categoria categoria = categoriaService.obtenerCategoriaPorId(id);
+    @GetMapping("/{idCategoria}")
+    public ResponseEntity<Categoria> obtenerPorId(@PathVariable Long idCategoria) {
+        Categoria categoria = categoriaService.obtenerCategoriaPorId(idCategoria);
         return categoria != null ? ResponseEntity.ok(categoria) : ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Categoria> actualizar(@PathVariable Long id, @RequestBody Categoria categoria) {
-        Categoria actualizada = categoriaService.actualizarCategoria(id, categoria);
+    @PutMapping("/{idCategoria}")
+    public ResponseEntity<Categoria> actualizar(@PathVariable Long idCategoria, @RequestBody Categoria categoria) {
+        Categoria actualizada = categoriaService.actualizarCategoria(idCategoria, categoria);
         return actualizada != null ? ResponseEntity.ok(actualizada) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        categoriaService.eliminarCategoria(id);
+    @DeleteMapping("/{idCategoria}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long idCategoria) {
+        categoriaService.eliminarCategoria(idCategoria);
         return ResponseEntity.noContent().build();
     }
 }

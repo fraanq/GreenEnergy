@@ -25,21 +25,21 @@ public class TicketController {
         return ResponseEntity.ok(ticketService.listarTickets());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Ticket> obtenerPorId(@PathVariable Long id) {
-        Ticket ticket = ticketService.obtenerTicketPorId(id);
+    @GetMapping("/{idTicket}")
+    public ResponseEntity<Ticket> obtenerPorId(@PathVariable Long idTicket) {
+        Ticket ticket = ticketService.obtenerTicketPorId(idTicket);
         return ticket != null ? ResponseEntity.ok(ticket) : ResponseEntity.notFound().build();
     }
 
-     @PutMapping("/{id}")
-    public ResponseEntity<Ticket> actualizar(@PathVariable Long id, @RequestBody Ticket ticket) {
-        Ticket actualizado = ticketService.actualizarTicket(id, ticket);
+    @PutMapping("/{idTicket}")
+    public ResponseEntity<Ticket> actualizar(@PathVariable Long idTicket, @RequestBody Ticket ticket) {
+        Ticket actualizado = ticketService.actualizarTicket(idTicket, ticket);
         return actualizado != null ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        ticketService.eliminarTicket(id);
+    @DeleteMapping("/{idTicket}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long idTicket) {
+        ticketService.eliminarTicket(idTicket);
         return ResponseEntity.noContent().build();
     }
 }

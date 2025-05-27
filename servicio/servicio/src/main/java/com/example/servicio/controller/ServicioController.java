@@ -22,13 +22,13 @@ public class ServicioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Servicio>> listar() {
+    public ResponseEntity<List<Servicio>> listarTodos() {
         return ResponseEntity.ok(servicioService.obtenerTodosLosServicios());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Servicio> obtenerPorId(@PathVariable Long id) {
-        Servicio servicio = servicioService.obtenerServicioPorId(id);
+    @GetMapping("/{idServicio}")
+    public ResponseEntity<Servicio> obtenerPorId(@PathVariable Long idServicio) {
+        Servicio servicio = servicioService.obtenerServicioPorId(idServicio);
         return servicio != null ? ResponseEntity.ok(servicio) : ResponseEntity.notFound().build();
     }
 
@@ -37,15 +37,15 @@ public class ServicioController {
         return ResponseEntity.ok(servicioService.listarPorCategoria(categoriaId));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Servicio> actualizar(@PathVariable Long id, @RequestBody Servicio servicioActualizado) {
-        Servicio actualizado = servicioService.actualizarServicio(id, servicioActualizado);
+    @PutMapping("/{idServicio}")
+    public ResponseEntity<Servicio> actualizar(@PathVariable Long idServicio, @RequestBody Servicio servicio) {
+        Servicio actualizado = servicioService.actualizarServicio(idServicio, servicio);
         return actualizado != null ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        servicioService.eliminarServicio(id);
+    @DeleteMapping("/{idServicio}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long idServicio) {
+        servicioService.eliminarServicio(idServicio);
         return ResponseEntity.noContent().build();
     }
 }

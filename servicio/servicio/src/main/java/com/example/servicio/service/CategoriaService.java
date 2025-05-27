@@ -1,39 +1,51 @@
 package com.example.servicio.service;
 
-import com.example.servicio.model.Categoria;
-import com.example.servicio.repository.CategoriaRepository;
+import com.example.servicio.model.Servicio;
+import com.example.servicio.service.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Service
-public class CategoriaService {
+@RestController
+@RequestMapping("/api/servicios")
+public class ServicioController {
 
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    private ServicioService servicioService;
 
-    public Categoria crearCategoria(Categoria categoria) {
-        return categoriaRepository.save(categoria);
+    @PostMapping
+    public ResponseEntity<Servicio> crear(@RequestBody Servicio servicio) {
+        Servicio creado = servicioService.crearServicio(servicio);
+        return ResponseEntity.ok(creado);
     }
 
-    public List<Categoria> listarCategorias() {
-        return categoriaRepository.findAll();
+    @GetMapping
+    public ResponseEntity<List<Servicio>> listarTodos() {
+        return ResponseEntity.ok(servicioService.obtenerTodosLosServicios());
     }
 
-    public Categoria obtenerCategoriaPorId(Long idCategoria) {
-        return categoriaRepository.findById(idCategoria).orElse(null);
+    @GetMapping("/{idServicio}")
+    public ResponseEntity<Servicio> obtenerPorId(@PathVariable Long idServicio) {
+        Servicio servicio = servicioService.obtenerServicioPorId(idServicio);
+        return servicio != null ? ResponseEntity.ok(servicio) : ResponseEntity.notFound().build();
     }
 
-    public Categoria actualizarCategoria(Long idCategoria, Categoria categoriaActualizada) {
-        if (categoriaRepository.existsById(idCategoria)) {
-            categoriaActualizada.setIdCategoria(idCategoria);
-            return categoriaRepository.save(categoriaActualizada);
-        }
-        return null;
+    @GetMapping("/categoria/{categoriaId}")
+    public ResponseEntity<List<Servicio>> listarPorCategoria(@PathVariable Long categoriaId) {
+        return ResponseEntity.ok(servicioService.listarPorCategoria(categoriaId));
     }
 
-    public void eliminarCategoria(Long idCategoria) {
-        categoriaRepository.deleteById(idCategoria);
+    @PutMapping("/{idServicio}")
+    public ResponseEntity<Servicio> actualizar(@PathVariable Long idServicio, @RequestBody Servicio servicio) {
+        Servicio actualizado = servicioService.actualizarServicio(idServicio, servicio);
+        return actualizado != null ? ResponseEntity.ok(actualizado) : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{idServicio}")
+    public ResponseEntity<Void> eliminar(@PathVariable Long idServicio) {
+        servicioService.eliminarServicio(idServicio);
+        return ResponseEntity.noContent().build();
     }
 }

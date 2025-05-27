@@ -21,23 +21,23 @@ public class ServicioService {
         return servicioRepository.findAll();
     }
 
-    public Servicio obtenerServicioPorId(Long id) {
-        return servicioRepository.findById(id).orElse(null);
+    public Servicio obtenerServicioPorId(Long idServicio) {
+        return servicioRepository.findById(idServicio).orElse(null);
     }
 
     public List<Servicio> listarPorCategoria(Long categoriaId) {
         return servicioRepository.findByCategoriaId(categoriaId);
     }
 
-    public Servicio actualizarServicio(Long id, Servicio servicioActualizado) {
-        if (servicioRepository.existsById(id)) {
-            servicioActualizado.setId(id);
+    public Servicio actualizarServicio(Long idServicio, Servicio servicioActualizado) {
+        if (servicioRepository.existsById(idServicio)) {
+            servicioActualizado.setIdServicio(idServicio); 
             return servicioRepository.save(servicioActualizado);
         }
         return null;
     }
 
-    public void eliminarServicio(Long id) {
-        servicioRepository.deleteById(id);
+    public void eliminarServicio(Long idServicio) {
+        servicioRepository.deleteById(idServicio);
     }
 }
