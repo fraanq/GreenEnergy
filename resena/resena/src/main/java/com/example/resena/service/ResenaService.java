@@ -19,8 +19,8 @@ public class ResenaService {
     }
 
     // Obtener una resena por ID
-    public Resena obtenerResenaPorId(Long id) {
-        return repository.findById(id).orElse(null);
+    public Resena obtenerResenaPorId(Long idResena) {
+        return repository.findById(idResena).orElse(null);
     }
 
     // Listar todas las resenas
@@ -39,13 +39,13 @@ public class ResenaService {
     }
 
     // Actualizar una resena
-    public Resena actualizarResena(Long id, Resena resena) {
-        resena.setId(id);
+    public Resena actualizarResena(Long idResena, Resena resena) {
+        resena.setIdResena(idResena); // ✔️ Campo actualizado correctamente
         return repository.save(resena);
     }
 
     // Eliminar una resena
-    public void eliminarResena(Long id) {
-        repository.deleteById(id);
+    public void eliminarResena(Long idResena) {
+        repository.deleteById(idResena);
     }
 }

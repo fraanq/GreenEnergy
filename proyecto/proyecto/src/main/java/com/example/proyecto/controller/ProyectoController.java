@@ -21,9 +21,9 @@ public class ProyectoController {
         return ResponseEntity.ok(creado);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Proyecto> obtenerPorId(@PathVariable Long id) {
-        Proyecto proyecto = proyectoService.obtenerProyectoPorId(id);
+    @GetMapping("/{idProyecto}")
+    public ResponseEntity<Proyecto> obtenerPorId(@PathVariable Long idProyecto) {
+        Proyecto proyecto = proyectoService.obtenerProyectoPorId(idProyecto);
         if (proyecto != null) {
             return ResponseEntity.ok(proyecto);
         } else {
@@ -43,15 +43,15 @@ public class ProyectoController {
         return ResponseEntity.ok(proyectos);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Proyecto> actualizarProyecto(@PathVariable Long id, @RequestBody Proyecto proyecto) {
-        Proyecto actualizado = proyectoService.actualizarProyecto(id, proyecto);
+    @PutMapping("/{idProyecto}")
+    public ResponseEntity<Proyecto> actualizarProyecto(@PathVariable Long idProyecto, @RequestBody Proyecto proyecto) {
+        Proyecto actualizado = proyectoService.actualizarProyecto(idProyecto, proyecto);
         return ResponseEntity.ok(actualizado);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarProyecto(@PathVariable Long id) {
-        proyectoService.eliminarProyecto(id);
+    @DeleteMapping("/{idProyecto}")
+    public ResponseEntity<Void> eliminarProyecto(@PathVariable Long idProyecto) {
+        proyectoService.eliminarProyecto(idProyecto);
         return ResponseEntity.noContent().build();
     }
 }

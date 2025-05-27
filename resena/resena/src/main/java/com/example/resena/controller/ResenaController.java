@@ -1,4 +1,5 @@
 package com.example.resena.controller;
+
 import com.example.resena.model.Resena;
 import com.example.resena.service.ResenaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/api/resenas")
 public class ResenaController {
+
     @Autowired
     private ResenaService resenaService;
 
@@ -20,9 +21,9 @@ public class ResenaController {
         return ResponseEntity.ok(creada);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Resena> obtenerPorId(@PathVariable Long id) {
-        Resena resena = resenaService.obtenerResenaPorId(id);
+    @GetMapping("/{idResena}")
+    public ResponseEntity<Resena> obtenerPorId(@PathVariable Long idResena) {
+        Resena resena = resenaService.obtenerResenaPorId(idResena);
         if (resena != null) {
             return ResponseEntity.ok(resena);
         } else {
@@ -48,16 +49,15 @@ public class ResenaController {
         return ResponseEntity.ok(resenas);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Resena> actualizarResena(@PathVariable Long id, @RequestBody Resena resena) {
-        Resena actualizado = resenaService.actualizarResena(id, resena);
+    @PutMapping("/{idResena}")
+    public ResponseEntity<Resena> actualizarResena(@PathVariable Long idResena, @RequestBody Resena resena) {
+        Resena actualizado = resenaService.actualizarResena(idResena, resena);
         return ResponseEntity.ok(actualizado);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarResena(@PathVariable Long id) {
-        resenaService.eliminarResena(id);
+    @DeleteMapping("/{idResena}")
+    public ResponseEntity<Void> eliminarResena(@PathVariable Long idResena) {
+        resenaService.eliminarResena(idResena);
         return ResponseEntity.noContent().build();
     }
-
 }

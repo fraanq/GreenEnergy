@@ -1,13 +1,14 @@
 package com.example.proyecto.model;
 
+
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "proyectos")
+@Table(name = "proyecto")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,27 +16,29 @@ public class Proyecto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_proyecto", nullable = false, updatable = false)
+    private Long idProyecto;
 
+    @Column(nullable = false, length = 100)
     private String nombre;
 
+    @Column(nullable = false, length = 255)
     private String descripcion;
 
-    @Column(name = "fecha_inicio")
+    @Column(nullable = false)
     private LocalDate fechaInicio;
 
-    @Column(name = "fecha_fin")
     private LocalDate fechaFin;
 
-    @Column(name = "estado_id")
-    private Long estadoId;      // ID de relacion con el microservicio Estado
+    @Column(nullable = false)
+    private Long estadoId;
 
-    @Column(name = "usuario_id")
-    private Long usuarioId;     // ID del cliente desde microservicio Usuarios
+    @Column(nullable = false)
+    private Long usuarioId;
 
-    @Column(name = "servicio_id")
-    private Long servicioId;    // ID del tipo de servicio
+    @Column(nullable = false)
+    private Long servicioId;
 
-    @Column(name = "ubicacion_id")
-    private Long ubicacionId;   // ID de la ubicacion
+    @Column(nullable = false)
+    private Long ubicacionId;
 }

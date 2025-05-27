@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "ticket")
@@ -17,23 +15,22 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_ticket")
-    private Long id;
+    @Column(name = "id_ticket", nullable = false, updatable = false)
+    private Long idTicket;
 
-    @Column(name = "f_ticket")
+    @Column(nullable = false)
     private LocalDate fecha;
 
+    @Column(nullable = false, length = 300)
     private String descripcion;
 
+    @Column(nullable = false, length = 100)
     private String domicilio;
 
-    @Column(name = "id_user")
+    @Column(nullable = false)
     private Long usuarioId;
 
-    @Column(name = "id_serv")
+    @Column(nullable = false)
     private Long servicioId;
-
-    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Respuesta> respuestas;
 }
 

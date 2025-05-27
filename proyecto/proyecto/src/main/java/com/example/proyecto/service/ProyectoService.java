@@ -18,8 +18,8 @@ public class ProyectoService {
         return repository.save(proyecto);
     }
 
-    public Proyecto obtenerProyectoPorId(Long id) {
-        return repository.findById(id).orElse(null);
+    public Proyecto obtenerProyectoPorId(Long idProyecto) {
+        return repository.findById(idProyecto).orElse(null);
     }
 
     public List<Proyecto> listarProyectos() {
@@ -30,12 +30,12 @@ public class ProyectoService {
         return repository.findByUsuarioId(usuarioId);
     }
 
-    public Proyecto actualizarProyecto(Long id, Proyecto proyecto) {
-        proyecto.setId(id);
+    public Proyecto actualizarProyecto(Long idProyecto, Proyecto proyecto) {
+        proyecto.setIdProyecto(idProyecto); 
         return repository.save(proyecto);
     }
 
-    public void eliminarProyecto(Long id) {
-        repository.deleteById(id);
+    public void eliminarProyecto(Long idProyecto) {
+        repository.deleteById(idProyecto);
     }
 }

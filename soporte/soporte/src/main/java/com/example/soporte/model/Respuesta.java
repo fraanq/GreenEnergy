@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
 
 @Entity
@@ -16,24 +15,26 @@ public class Respuesta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_resp")
-    private Long id;
+    @Column(name = "id_respuesta", nullable = false, updatable = false)
+    private Long idRespuesta;
 
+    @Column(nullable = false, length = 300)
     private String comentario;
 
+    @Column(nullable = false)
+    private LocalDate fechaRespuesta;
+
+    @Column(nullable = false, length = 20)
+    private String tipo;
+
+    @Column(nullable = false)
+    private Long usuarioId;
+
     @ManyToOne
-    @JoinColumn(name = "id_ticket")
+    @JoinColumn(name = "ticket_id", nullable = false)
     private Ticket ticket;
 
     @ManyToOne
-    @JoinColumn(name = "id_estado")
+    @JoinColumn(name = "estado_id", nullable = false)
     private Estado estado;
-
-    @Column(name = "f_resp")
-    private LocalDate fechaRespuesta;
-
-    @Column(name = "id_user")
-    private Long usuarioId;
-
-    private String tipo;
 }

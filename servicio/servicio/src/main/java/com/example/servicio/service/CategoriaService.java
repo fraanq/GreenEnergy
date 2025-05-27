@@ -21,19 +21,19 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    public Categoria obtenerCategoriaPorId(Long id) {
-        return categoriaRepository.findById(id).orElse(null);
+    public Categoria obtenerCategoriaPorId(Long idCategoria) {
+        return categoriaRepository.findById(idCategoria).orElse(null);
     }
 
-    public Categoria actualizarCategoria(Long id, Categoria categoriaActualizada) {
-        if (categoriaRepository.existsById(id)) {
-            categoriaActualizada.setId(id);
+    public Categoria actualizarCategoria(Long idCategoria, Categoria categoriaActualizada) {
+        if (categoriaRepository.existsById(idCategoria)) {
+            categoriaActualizada.setIdCategoria(idCategoria);
             return categoriaRepository.save(categoriaActualizada);
         }
         return null;
     }
 
-    public void eliminarCategoria(Long id) {
-        categoriaRepository.deleteById(id);
+    public void eliminarCategoria(Long idCategoria) {
+        categoriaRepository.deleteById(idCategoria);
     }
 }
